@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Core Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .btn-view-images {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-view-images:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white py-3">
+        <h1 class="text-center">Campus Core Marketplace</h1>
+    </header>
+
+    <div class="container my-4">
+        <!-- Search Bar -->
+        <div class="row mb-4">
+            <div class="col-md-8 offset-md-2">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search for items...">
+            </div>
+        </div>
+
+        <!-- Items Section -->
+        <div class="row" id="marketplaceContainer">
+            <!-- Cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Sample data for items
+        const items = [
+            {
+                name: "Refurbished Dell Laptop",
+                price: "20000",
+                sellerContact: "9876543210",
+                reviews: "4.5/5 (120 reviews)",
+                description: "A lightly used Dell laptop in excellent condition with upgraded SSD and RAM.",
+                image: "assets/laptop.jpg",
+                detailsPage: "description.html",
+            },
+            {
+                name: "Study Table",
+                price: "400",
+                sellerContact: "9123456789",
+                reviews: "4.2/5 (85 reviews)",
+                description: "Sturdy wooden study table with ample space and a modern finish.",
+                image: "assets/table.jpg",
+                detailsPage: "description.html",
+            },
+            {
+                name: "Bluetooth Boat Headphones",
+                price: "900",
+                sellerContact: "9988776655",
+                reviews: "4.8/5 (200 reviews)",
+                description: "Wireless Bluetooth headphones with noise cancellation and 20-hour battery life.",
+                image: "assets/headphones.jpg",
+                detailsPage: "description.html",
+            }
+        ];
+
+        // Function to display items dynamically
+        function displayItems(filter = "") {
+            const container = document.getElementById("marketplaceContainer");
+            container.innerHTML = ""; // Clear previous content
+
+            // Filter items based on the search input
+            const filteredItems = items.filter(item =>
+                item.name.toLowerCase().includes(filter.toLowerCase()) ||
+                item.description.toLowerCase().includes(filter.toLowerCase())
+            );
+
+            // Create cards for each item
+            filteredItems.forEach(item => {
+                const card = `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="${item.image}" class="card-img-top" alt="${item.name}" title="${item.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.name}</h5>
+                                <p class="card-text">
+                                    <strong>Price:</strong> ${item.price}<br>
+                                    <strong>Seller Contact:</strong> ${item.sellerContact}<br>
+                                    <strong>Reviews:</strong> ${item.reviews}<br>
+                                    <strong>Description:</strong> ${item.description.slice(0, 50)}... 
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                    <a href="${item.detailsPage}" class="btn btn-primary">Details</a>
+                                    <button class="btn btn-view-images" onclick="alert('More images for ${item.name}')">View Images</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+
+            // Display a message if no items match the search
+            if (filteredItems.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <p class="text-muted">No items found. Try a different search term.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Add search functionality
+        document.getElementById("searchInput").addEventListener("input", function () {
+            displayItems(this.value); // Filter items based on input
+        });
+
+        // Display all items on page load
+        displayItems();
+    </script>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>© 2024 CampusCore. All rights reserved.</p>
+    </footer>
+</body>
+</html>

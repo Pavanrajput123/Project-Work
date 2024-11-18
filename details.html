@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .img-fluid {
+            transition: transform 0.3s ease; /* Smooth zoom effect */
+            cursor: pointer;
+        }
+        .img-fluid:hover {
+            transform: scale(1.1); /* Slightly zoom in on hover */
+           
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-primary text-white p-3">
+        <h1 class="text-center">Room Details</h1>
+    </header>
+    
+    <div class="container my-4">
+        <h2>Rooms Images</h2>
+        <div class="row">
+            <!-- Sample images -->
+            <div class="col-md-4"><img src="./assets/1bedroom.jpeg" class="img-fluid" alt="Room Image" title="single bed"></div>
+            <div class="col-md-4"><img src="./assets/2bedroom.jpeg" class="img-fluid" alt="Room Image"></div>
+            <div class="col-md-4"><img src="./assets/4bedroom.jpg" class="img-fluid" alt="Room Image"></div>
+            <div class="col-md-4"><img src="./assets/6 bed room.jpeg" class="img-fluid" alt="Room Image"></div>
+            <div class="col-md-4"><img src="./assets/2bed room.jpeg" class="img-fluid" alt="Room Image"></div>
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="bg-dark text-white text-center py-3">
+        <p>© 2024 StayHub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
